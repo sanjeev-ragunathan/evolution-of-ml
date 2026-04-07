@@ -74,11 +74,11 @@ Each chapter follows the same pattern:
 ## Setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ml-saga.git
-cd ml-saga
+git clone https://github.com/sanjeev-ragunathan/everything-about-ml.git
+cd everything-about-ml
 ```
 
-Chapters 0–1 use **zero libraries**. Dependencies unlock as you progress.
+Act-1 use **zero libraries**. Dependencies unlock as you progress.
 
 ---
 
