@@ -1,4 +1,4 @@
-# Everything about ML
+# Everything About ML
 
 <p align="center">
   <img src="images/0-ml-evolution.jpg" alt="ml evolution" width="100%"/>
@@ -8,7 +8,7 @@ My journey through the entire history of machine learning - from 1943 to today.
 
 Every breakthrough. Every pivotal moment. Built with my own hands.
 
----
+
 
 ## How It Works
 
@@ -16,10 +16,10 @@ Each chapter follows the same pattern:
 
 1. **The Story** — What problem existed? Who solved it? Why did it matter?
 2. **The Math** — The core ideas, distilled
-3. **The Code** — build it
+3. **The Code** — Build it
 4. **The Insight** — Why the next breakthrough had to happen
 
----
+
 
 ## The Journey
 
@@ -72,28 +72,3 @@ Each chapter follows the same pattern:
 | 2025–2026 | Multimodal generation | Vision-language pipeline | ⬜ |
 
 > ⬜ not started · 🔨 in progress · ✅ done
-
----
-
-## Setup
-
-```bash
-git clone https://github.com/sanjeev-ragunathan/everything-about-ml.git
-cd everything-about-ml
-```
-
-Act-1 use **zero libraries**. Dependencies unlock as you progress.
-
----
-
-## Rules
-
-1. Build before you import
-2. Understand before you scale
-3. Document everything
-4. Never delete old code
-5. Keep growing
-
----
-
-*Started: April 2026*
