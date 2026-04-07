@@ -13,6 +13,11 @@ That's it. On or off. 1 or 0.
 
 In 1943, **McCulloch & Pitts** turned this into math. They built a model neuron: take inputs, multiply each by a weight (the connection strength), sum them up, check against a threshold. The first mathematical model of the brain.
 
+```
+output = 1   if (w₁·x₁ + w₂·x₂ + ... + wₙ·xₙ) ≥ threshold
+         0   otherwise
+```
+
 ## Let's build a neuron that handles boolean gates
 
 With just one neuron and the right weights, you can compute:  
@@ -30,7 +35,27 @@ The McCulloch-Pitts neuron works, but a human has to choose every weight by hand
 
 The neuron needs to **learn**.
 
-That's what Rosenblatt solved in 1957 → `1957-perceptron/`
+That's what Rosenblatt solved in 1957. `Perceptron`
+
+### Perceptron: A neuron that learns
+**Neuron + Learning**  
+**learning**: adjust weight and bias based on error (target - predicted).  
+**bias**: tells how biased is the neuron to fire or not fire, basically just threshold moved to the left in the predict formula of neuron.  
+
+> weights is for every input  
+> bias is for the whole neuron - added to weighted sum for a particular input
+
+```
+bias = -threshold
+
+predict:
+  output = 1   if (w₁·x₁ + w₂·x₂ + ... + wₙ·xₙ + bias) ≥ 0
+           0   otherwise
+
+train (when prediction is wrong):
+  wᵢ   = wᵢ   + learning_rate × (target - predicted) × xᵢ
+  bias  = bias + learning_rate × (target - predicted)
+```
 
 ## But wait.. what about XOR!?
 
@@ -55,7 +80,7 @@ Try drawing one straight line that separates ● from ○.
 You can't.
 ```
 
-The neuron's equation draws a straight line through this space. Everything on one side fires, everything on the other doesn't. But the 1s sit on opposite diagonal corners — no single line can separate them. This is called **not linearly separable**.
+The neuron's equation `w₁·x₁ + w₂·x₂ + bias = 0` draws a straight line through this space. Everything on one side fires, everything on the other doesn't. But the 1s sit on opposite diagonal corners — no single line can separate them. This is called **not linearly separable**.
 
 In 1969, **Minsky & Papert** proved this limitation formally. Funding dried up. Researchers abandoned neural networks. Working on this became a career dead end. For 15 years, AI went cold.
 
