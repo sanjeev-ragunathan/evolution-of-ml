@@ -34,7 +34,7 @@ Each chapter follows the same pattern:
 
 | Year | Milestone | Project | Status |
 |------|-----------|---------|--------|
-| 1980s–1990s | Classical ML rises | ML toolkit with Scikit-learn | ⬜ |
+| 1980s–1990s | Classical ML rises | ML toolkit with Scikit-learn | ✅ |
 | 1998 | The first real CNN | LeNet on MNIST | ⬜ |
 
 ### Act 3 — The Deep Learning Revolution
