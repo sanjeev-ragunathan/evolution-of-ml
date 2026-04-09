@@ -8,6 +8,7 @@ Your brain has ~86 billion neurons. Each one does something surprisingly simple:
 - Each connection has a **strength** — some signals matter more than others
 - The neuron adds up all the incoming signals
 - If the total crosses a **threshold** — it fires. If not — silence
+- it's basically *classification* - classifying if these input signals fire or not fire.
 
 That's it. On or off. 1 or 0.
 
@@ -77,7 +78,7 @@ x₂
 ○ = silent (output 0)
 
 Try drawing one straight line that separates ● from ○.
-You can't.
+You can't. - CAN'T CLASSIFY
 ```
 
 The neuron's equation `w₁·x₁ + w₂·x₂ + bias = 0` draws a straight line through this space. Everything on one side fires, everything on the other doesn't. But the 1s sit on opposite diagonal corners — no single line can separate them. This is called **not linearly separable**.
