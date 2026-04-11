@@ -46,6 +46,11 @@ The derivative is never zero in the useful range. Error can always flow. Backpro
 
 The output is no longer a hard 0 or 1 — it's a **confidence**. A prediction of 0.98 means "98% confident this is a 1."
 
+```
+NOTE:  
+Activation functions bring non-linearity by applying a non-linear mapping after each layer (remember that 1 / 1+e^-x - that's a non-linear mapping), allowing the network to learn complex patterns; the step function is one such non-linear activation, but unlike modern activations, it is not useful for backpropagation because its gradient is zero or undefined.
+```
+
 ## The Formulas
 
 **Forward pass:**
