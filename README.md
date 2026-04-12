@@ -12,8 +12,6 @@ Every breakthrough. Every pivotal moment. Learnt by building.
 
 ## How It Works
 
-Each chapter follows the same pattern:
-
 1. **The Story** — What problem existed? Who solved it? Why did it matter?
 2. **The Solution** — The core ideas, distilled
 3. **The Code** — Build it
