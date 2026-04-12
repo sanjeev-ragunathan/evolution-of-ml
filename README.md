@@ -8,6 +8,9 @@ My journey through the entire history of machine learning - from 1943 to today.
 
 Every breakthrough. Every pivotal moment. Learnt by building.
 
+> The timeline is organized by when ideas made their breakthrough - not when papers were published.  
+> The story is about when things changed the world, not when they were written.
+
 
 
 ## How It Works
