@@ -13,15 +13,6 @@ Every breakthrough. Every pivotal moment. Learnt by building.
 
 
 
-## How It Works
-
-1. **The Story** - What problem existed? Who solved it? Why did it matter?
-2. **The Solution** - The core ideas
-3. **The Code** - Build it
-4. **The Insight** - Why the next breakthrough had to happen
-
-
-
 ## The Journey
 
 | Year | Milestone | Project | Status |
