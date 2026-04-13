@@ -15,30 +15,30 @@ Every breakthrough. Every pivotal moment. Learnt by building.
 
 ## How It Works
 
-1. **The Story** — What problem existed? Who solved it? Why did it matter?
-2. **The Solution** — The core ideas, distilled
-3. **The Code** — Build it
-4. **The Insight** — Why the next breakthrough had to happen
+1. **The Story** - What problem existed? Who solved it? Why did it matter?
+2. **The Solution** - The core ideas, distilled
+3. **The Code** - Build it
+4. **The Insight** - Why the next breakthrough had to happen
 
 
 
 ## The Journey
 
-### Act 1 — The Origin Story
+### Act 1 - The Origin Story
 
 | Year | Milestone | Project | Status |
 |------|-----------|---------|--------|
 | 1940s–1960s | The birth of the idea | Perceptron from scratch | ✅ |
 | 1969–1980s | The first AI winter | Neural net solving XOR | ✅ |
 
-### Act 2 — The Math Age
+### Act 2 - The Math Age
 
 | Year | Milestone | Project | Status |
 |------|-----------|---------|--------|
 | 1980s–1990s | Classical ML rises | ML toolkit with Scikit-learn | ✅ |
 | 1998 | The first real CNN | LeNet on MNIST | ✅ |
 
-### Act 3 — The Deep Learning Revolution
+### Act 3 - The Deep Learning Revolution
 
 | Year | Milestone | Project | Status |
 |------|-----------|---------|--------|
@@ -47,7 +47,7 @@ Every breakthrough. Every pivotal moment. Learnt by building.
 | 2014 | Sequence models | LSTM language model | ✅ |
 | 2014 | Machines that hallucinate | DCGAN | ⬜ |
 
-### Act 4 — The Transformer Era
+### Act 4 - The Transformer Era
 
 | Year | Milestone | Project | Status |
 |------|-----------|---------|--------|
@@ -55,15 +55,15 @@ Every breakthrough. Every pivotal moment. Learnt by building.
 | 2018–2020 | Pre-training explodes | Fine-tune BERT | ⬜ |
 | 2020–2021 | Scaling laws | Prompt engineering with GPT | ⬜ |
 
-### Act 5 — The Generative Explosion
+### Act 5 - The Generative Explosion
 
 | Year | Milestone | Project | Status |
 |------|-----------|---------|--------|
 | 2021–2022 | Diffusion & image generation | Simple diffusion model | ⬜ |
-| 2022 | ChatGPT — AI goes mainstream | Reward modeling & RLHF | ⬜ |
+| 2022 | ChatGPT - AI goes mainstream | Reward modeling & RLHF | ⬜ |
 | 2023 | The open-source race | Run & fine-tune a local LLM | ⬜ |
 
-### Act 6 — The Intelligence Race
+### Act 6 - The Intelligence Race
 
 | Year | Milestone | Project | Status |
 |------|-----------|---------|--------|
