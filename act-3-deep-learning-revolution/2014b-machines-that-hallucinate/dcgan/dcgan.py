@@ -100,3 +100,22 @@ if __name__ == "__main__":
             loss_G.backward()
             optimizer_G.step()
         print(f"Epoch {epoch}, Loss D: {loss_D.item():.4f}, Loss G: {loss_G.item():.4f}")
+    
+    
+    # Generate and save images
+    import matplotlib.pyplot as plt
+
+    generator.eval()
+    with torch.no_grad():
+        noise = torch.randn(16, 64)
+        fake_images = generator(noise)
+
+    fig, axes = plt.subplots(4, 4, figsize=(6, 6))
+    for i, ax in enumerate(axes.flat):
+        img = fake_images[i].squeeze().numpy()
+        ax.imshow(img, cmap='gray')
+        ax.axis('off')
+    plt.suptitle('Generated Digits')
+    plt.savefig('generated_digits.png')
+    plt.close()
+    print("Saved generated_digits.png")
