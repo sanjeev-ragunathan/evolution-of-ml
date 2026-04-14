@@ -1,28 +1,25 @@
 # Attention Is All You Need (2017)
 
-## The Story
-
-Google Brain publishes the paper that rewrites everything. No recurrence. No convolution. Just attention — scaled dot-product, multi-head, positional encoding. Every modern AI descends from this paper.
-
-## Key Concepts
-
-- **Self-attention** — Every token looks at every other token
-- **Multi-head attention** — Multiple perspectives simultaneously
-- **Positional encoding** — How transformers know word order
-- **Layer norm** — Stabilize deep transformer stacks
-
-## What You Build
-
-- Transformer from scratch — every component
-- Train on a tiny translation task
-
-## Run
-
-```bash
-cd transformer
-python transformer.py
-```
-
-## Key Insight
-
-Attention lets the model decide what's relevant dynamically, rather than relying on fixed-size windows or sequential processing.
+# My structure for this file
+- Now we captrured - simple classification, image classification, sequence next term generation
+- Now TRANSLATION - How do you transpate a sentence in one language to another.
+- Difficulties - different LANGUAGE and different length.
+- Seq2Seq - Google
+    - 2 LSTMs
+    - Decoder and Encoder
+    - Context Vector
+    - Bottle Neck
+    - Google Translate used this in 2016 - but .. Vanishing problem.
+- the problem was vanishing context - why not create a context vectore from the back in reverse. - Bidirectional LSTM
+- Attention (2015) - Bahdanau
+    - solved the previous problem
+    - during encoding, lstm produces hidden state after every step.
+    - why throw them? keep all of them
+    - During decoding - each term has access to all the hidden states from encoding. But each has it's own weights. Relevant term - higher weights, vice-versa.
+- Realised why do I even need context vector or LSTMs
+- What was LSTM still bringing to the table? - ORDER'
+- Be Hold - Attention is All You Need (2017) - Google
+    - Transformers
+    - + Positional Encoding - to preserve ORDER
+    - self-attention (diving into cross-attention)
+    - Q, K, V
