@@ -16,9 +16,9 @@ torch>=2.1
 torchvision>=0.16
 
 # --- Act 4: Hugging Face ---
-# transformers>=4.35
-# datasets>=2.15
-# accelerate>=0.24
+transformers>=4.35
+datasets>=2.15
+accelerate>=0.24
 
 # --- Act 5: Generative ---
 # diffusers>=0.24
