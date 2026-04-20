@@ -42,7 +42,8 @@ An LSTM unit takes three inputs:
 - **Short-term memory (sm)** - the hidden state
 - **Current item (ci)** - the current word/character
 
-### The three gates
+### 1 LSTM Block - has three gates
+an input word goes through these gates to complete one LSTM block.
 
 **Forget Gate** - what to erase from long-term memory
 
