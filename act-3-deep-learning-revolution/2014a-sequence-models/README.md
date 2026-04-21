@@ -45,6 +45,8 @@ An LSTM unit takes three inputs:
 ### 1 LSTM Block - has three gates
 an input word goes through these gates to complete one LSTM block.
 
+<img src="../../images/2-lstm-block.png" width="500">
+
 **Forget Gate** - what to erase from long-term memory
 
 ```

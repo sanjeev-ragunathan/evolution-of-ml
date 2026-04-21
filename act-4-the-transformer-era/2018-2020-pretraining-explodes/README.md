@@ -46,7 +46,7 @@ Pre-trained on all of English Wikipedia + BookCorpus — 3.3 billion words.
 
 **G**enerative **P**re-trained **T**ransformer.
 
-GPT's depart from "transforming" of text to "generating" of text through Auto-Regressive next-word prediction.  
+GPT's depart from "transforming" of text to "generating" of text through **Auto-Regressive** next-word prediction.  
 Auto-Regressive text generation: make prediction - feed them back - predict the next word
 
 Uses only the **decoder** half of the Transformer. No encoder. GPT predicts the next word — left-to-right only:
