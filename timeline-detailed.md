@@ -588,5 +588,4 @@ Input (32×32) → Conv → Pool → Conv → Pool → FC → FC → Output (10 
 
 ---
 
-*Last updated: April 2026*  
 *For detailed explanations of each concept, see the corresponding chapter README in the repository.*
