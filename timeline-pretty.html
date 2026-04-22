@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Evolution of ML — A Journey Through Time</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700;9..144,900&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --bg-deep: #05080c;
+    --ink: #e8e4d8;
+    --ink-muted: #8a8578;
+    --river: #3d5a6c;
+    --river-glow: #5e8ca8;
+    --accent-1: #d4a574;     /* warm amber — the origins */
+    --accent-2: #b8c4a8;     /* sage — math age */
+    --accent-3: #e8915e;     /* copper — deep learning */
+    --accent-4: #7ba8b0;     /* teal — transformer */
+    --accent-5: #c08497;     /* rose — generative */
+    --accent-6: #9b8ab8;     /* lavender — intelligence */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Fraunces', Georgia, serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(212, 165, 116, 0.06), transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(155, 138, 184, 0.06), transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 4px);
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: overlay;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 100px 40px 200px;
+  }
+
+  .intro {
+    text-align: center;
+    margin-bottom: 140px;
+    animation: fadeIn 1.2s ease-out;
+  }
+
+  .intro .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 32px;
+  }
+
+  .intro h1 {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    margin-bottom: 24px;
+  }
+
+  .intro h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent-3);
+  }
+
+  .intro .subtitle {
+    font-size: 18px;
+    font-style: italic;
+    color: var(--ink-muted);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .scroll-hint {
+    margin-top: 60px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--ink-muted);
+    opacity: 0.6;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+
+  /* The river container */
+  .river-container {
+    position: relative;
+    padding: 0;
+  }
+
+  .river-svg {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 100px;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .river-path {
+    stroke: var(--river);
+    stroke-width: 2;
+    fill: none;
+    stroke-dasharray: 4 4;
+    opacity: 0.5;
+  }
+
+  .river-glow {
+    stroke: var(--river-glow);
+    stroke-width: 1;
+    fill: none;
+    opacity: 0.3;
+    filter: blur(3px);
+  }
+
+  /* Era section */
+  .era {
+    position: relative;
+    margin-bottom: 160px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .era.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .era-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  .era-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+  }
+
+  .era-title {
+    font-size: clamp(36px, 4.5vw, 64px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    text-align: center;
+    line-height: 1.05;
+  }
+
+  .era-title em {
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .era-years {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    margin-top: 16px;
+    letter-spacing: 0.1em;
+  }
+
+  /* Era color themes */
+  .era-1 .era-title em, .era-1 .node-dot { color: var(--accent-1); }
+  .era-2 .era-title em, .era-2 .node-dot { color: var(--accent-2); }
+  .era-3 .era-title em, .era-3 .node-dot { color: var(--accent-3); }
+  .era-4 .era-title em, .era-4 .node-dot { color: var(--accent-4); }
+  .era-5 .era-title em, .era-5 .node-dot { color: var(--accent-5); }
+  .era-6 .era-title em, .era-6 .node-dot { color: var(--accent-6); }
+
+  .era-1 .era-years { color: var(--accent-1); }
+  .era-2 .era-years { color: var(--accent-2); }
+  .era-3 .era-years { color: var(--accent-3); }
+  .era-4 .era-years { color: var(--accent-4); }
+  .era-5 .era-years { color: var(--accent-5); }
+  .era-6 .era-years { color: var(--accent-6); }
+
+  /* Nodes alternate left/right */
+  .node {
+    display: grid;
+    grid-template-columns: 1fr 120px 1fr;
+    gap: 0;
+    align-items: center;
+    margin-bottom: 90px;
+    min-height: 140px;
+  }
+
+  .node-spine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .node-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: currentColor;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0 0 0 4px var(--bg), 0 0 20px currentColor;
+  }
+
+  .node-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-muted);
+    margin-top: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .node-content {
+    padding: 0 60px;
+  }
+
+  .node.left .node-content.left {
+    text-align: right;
+  }
+
+  .node.right .node-content.right {
+    text-align: left;
+  }
+
+  .node-title {
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .node-people {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+
+  .node-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink);
+    opacity: 0.85;
+    font-weight: 300;
+  }
+
+  .node-tags {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .node.left .node-tags {
+    justify-content: flex-end;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid rgba(232, 228, 216, 0.15);
+    color: var(--ink-muted);
+    border-radius: 2px;
+  }
+
+  /* Spine line connecting nodes within an era */
+  .era::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--river) 10%, var(--river) 90%, transparent);
+    transform: translateX(-50%);
+    z-index: 1;
+    opacity: 0.6;
+  }
+
+  /* Floating accent label for each era */
+  .era-badge {
+    position: absolute;
+    top: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    opacity: 0.4;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .era:nth-child(odd) .era-badge {
+    left: 20px;
+  }
+
+  .era:nth-child(even) .era-badge {
+    right: 20px;
+  }
+
+  /* Outro */
+  .outro {
+    text-align: center;
+    margin-top: 120px;
+    padding: 80px 0;
+    border-top: 1px solid rgba(232, 228, 216, 0.08);
+  }
+
+  .outro p {
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ink-muted);
+    max-width: 600px;
+    margin: 0 auto 16px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .outro .signature {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 40px;
+    opacity: 0.5;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .wrap { padding: 60px 20px 120px; }
+    .intro { margin-bottom: 80px; }
+    .era { margin-bottom: 100px; }
+    .era-marker { margin-bottom: 50px; }
+    
+    .node {
+      grid-template-columns: 40px 1fr;
+      gap: 0;
+      margin-bottom: 60px;
+    }
+    
+    .node-spine {
+      order: 1;
+    }
+    
+    .node-content {
+      padding: 0 0 0 30px;
+      order: 2;
+    }
+    
+    .node.left .node-content,
+    .node.right .node-content {
+      text-align: left;
+    }
+    
+    /* On mobile, hide empty sides since we're single column */
+    .node.left .node-content.right,
+    .node.right .node-content.left {
+      display: none;
+    }
+    
+    .era::before {
+      left: 20px;
+    }
+    
+    .node.left .node-tags,
+    .node.right .node-tags {
+      justify-content: flex-start;
+    }
+    
+    .era-badge { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- Intro -->
+  <div class="intro">
+    <div class="eyebrow">A chronological journey · 1943 → Today</div>
+    <h1>The Evolution<br>of <em>Machine Learning</em></h1>
+    <p class="subtitle">Every breakthrough. Every pivotal moment. The ideas that taught machines to think, written as they unfolded.</p>
+    <div class="scroll-hint">↓ Begin</div>
+  </div>
+
+  <!-- Era 1: The Origin Story -->
+  <div class="era era-1">
+    <div class="era-badge">Act One</div>
+    <div class="era-marker">
+      <div class="era-label">Act One</div>
+      <h2 class="era-title">The <em>Origin</em> Story</h2>
+      <div class="era-years">1943 — 1986</div>
+    </div>
+
+    <div class="node left">
+      <div class="node-content left">
+        <h3 class="node-title">The First Artificial Neuron</h3>
+        <div class="node-people">McCulloch · Pitts</div>
+        <p class="node-desc">A mathematical model of a biological neuron: weighted sum, threshold, binary output. The birth of the idea that brains could be computed.</p>
+        <div class="node-tags">
+          <span class="tag">Neuron</span>
+          <span class="tag">Step Function</span>
+        </div>
+      </div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">1943</div>
+      </div>
+      <div class="node-content right"></div>
+    </div>
+
+    <div class="node right">
+      <div class="node-content left"></div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">1957</div>
+      </div>
+      <div class="node-content right">
+        <h3 class="node-title">The Perceptron</h3>
+        <div class="node-people">Frank Rosenblatt</div>
+        <p class="node-desc">The first neural network that could learn. Rosenblatt's update rule automatically adjusted weights from examples.</p>
+        <div class="node-tags">
+          <span class="tag">Learning</span>
+          <span class="tag">Weights</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="node left">
+      <div class="node-content left">
+        <h3 class="node-title">The First AI Winter</h3>
+        <div class="node-people">Minsky · Papert</div>
+        <p class="node-desc">Proved a single perceptron couldn't solve XOR — not linearly separable. Funding collapsed. Neural nets went dormant for 15 years.</p>
+        <div class="node-tags">
+          <span class="tag">XOR</span>
+          <span class="tag">Linear Separability</span>
+        </div>
+      </div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">1969</div>
+      </div>
+      <div class="node-content right"></div>
+    </div>
+
+    <div class="node right">
+      <div class="node-content left"></div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">1986</div>
+      </div>
+      <div class="node-content right">
+        <h3 class="node-title">Backpropagation</h3>
+        <div class="node-people">Rumelhart · Hinton · Williams</div>
+        <p class="node-desc">The algorithm that trained multi-layer networks. Solved XOR. The renaissance of neural networks begins — quietly.</p>
+        <div class="node-tags">
+          <span class="tag">Multi-layer</span>
+          <span class="tag">Sigmoid</span>
+          <span class="tag">Chain Rule</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Era 2: The Math Age -->
+  <div class="era era-2">
+    <div class="era-badge">Act Two</div>
+    <div class="era-marker">
+      <div class="era-label">Act Two</div>
+      <h2 class="era-title">The <em>Math</em> Age</h2>
+      <div class="era-years">1990s — 1998</div>
+    </div>
+
+    <div class="node left">
+      <div class="node-content left">
+        <h3 class="node-title">Classical ML Rises</h3>
+        <div class="node-people">Vapnik · Breiman · Quinlan</div>
+        <p class="node-desc">SVMs, random forests, decision trees, k-NN. Elegant mathematics. Neural networks were ignored — classical ML was good enough, and faster.</p>
+        <div class="node-tags">
+          <span class="tag">SVM</span>
+          <span class="tag">Random Forest</span>
+          <span class="tag">Feature Scaling</span>
+        </div>
+      </div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">1990s</div>
+      </div>
+      <div class="node-content right"></div>
+    </div>
+
+    <div class="node right">
+      <div class="node-content left"></div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">1998</div>
+      </div>
+      <div class="node-content right">
+        <h3 class="node-title">LeNet — The First Real CNN</h3>
+        <div class="node-people">Yann LeCun</div>
+        <p class="node-desc">Convolutions. Pooling. Filters that learned edges, textures, shapes. LeNet read handwritten checks — the first real-world success of deep learning.</p>
+        <div class="node-tags">
+          <span class="tag">Convolution</span>
+          <span class="tag">Pooling</span>
+          <span class="tag">MNIST</span>
+          <span class="tag">Tanh</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Era 3: Deep Learning Revolution -->
+  <div class="era era-3">
+    <div class="era-badge">Act Three</div>
+    <div class="era-marker">
+      <div class="era-label">Act Three</div>
+      <h2 class="era-title">The <em>Deep Learning</em> Revolution</h2>
+      <div class="era-years">2012 — 2015</div>
+    </div>
+
+    <div class="node left">
+      <div class="node-content left">
+        <h3 class="node-title">AlexNet — The Big Bang</h3>
+        <div class="node-people">Krizhevsky · Sutskever · Hinton</div>
+        <p class="node-desc">Trained on GPUs. Used ReLU and dropout. Shattered ImageNet with a 10.8-point margin. The deep learning era begins, publicly and violently.</p>
+        <div class="node-tags">
+          <span class="tag">ReLU</span>
+          <span class="tag">Dropout</span>
+          <span class="tag">GPU</span>
+          <span class="tag">ImageNet</span>
+        </div>
+      </div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">2012</div>
+      </div>
+      <div class="node-content right"></div>
+    </div>
+
+    <div class="node right">
+      <div class="node-content left"></div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">2014</div>
+      </div>
+      <div class="node-content right">
+        <h3 class="node-title">Sequence Models — LSTMs</h3>
+        <div class="node-people">Hochreiter · Schmidhuber · Sutskever</div>
+        <p class="node-desc">Cell state as a memory conveyor belt. Gates that decide what to forget, store, output. Machines could finally read, translate, and write.</p>
+        <div class="node-tags">
+          <span class="tag">LSTM</span>
+          <span class="tag">Seq2Seq</span>
+          <span class="tag">Attention</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="node left">
+      <div class="node-content left">
+        <h3 class="node-title">GANs — Machines That Hallucinate</h3>
+        <div class="node-people">Ian Goodfellow</div>
+        <p class="node-desc">Two networks locked in competition — one forges, one judges. The first time AI could create images from pure noise.</p>
+        <div class="node-tags">
+          <span class="tag">Adversarial</span>
+          <span class="tag">Generator</span>
+          <span class="tag">Discriminator</span>
+        </div>
+      </div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">2014</div>
+      </div>
+      <div class="node-content right"></div>
+    </div>
+
+    <div class="node right">
+      <div class="node-content left"></div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">2015</div>
+      </div>
+      <div class="node-content right">
+        <h3 class="node-title">ResNet — 152 Layers</h3>
+        <div class="node-people">Kaiming He</div>
+        <p class="node-desc">Skip connections gave gradients a highway through depth. 152 layers. Beat human performance on ImageNet. Transfer learning arrives.</p>
+        <div class="node-tags">
+          <span class="tag">Skip Connection</span>
+          <span class="tag">Batch Norm</span>
+          <span class="tag">Transfer Learning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Era 4: Transformer -->
+  <div class="era era-4">
+    <div class="era-badge">Act Four</div>
+    <div class="era-marker">
+      <div class="era-label">Act Four</div>
+      <h2 class="era-title">The <em>Transformer</em> Era</h2>
+      <div class="era-years">2017 — 2021</div>
+    </div>
+
+    <div class="node left">
+      <div class="node-content left">
+        <h3 class="node-title">Attention Is All You Need</h3>
+        <div class="node-people">Vaswani et al. · Google Brain</div>
+        <p class="node-desc">Threw away recurrence. Every word sees every other word in parallel. Query, Key, Value. The architecture that powers everything after.</p>
+        <div class="node-tags">
+          <span class="tag">Self-Attention</span>
+          <span class="tag">Multi-Head</span>
+          <span class="tag">Positional Encoding</span>
+        </div>
+      </div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">2017</div>
+      </div>
+      <div class="node-content right"></div>
+    </div>
+
+    <div class="node right">
+      <div class="node-content left"></div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">2018</div>
+      </div>
+      <div class="node-content right">
+        <h3 class="node-title">BERT & GPT — Pre-training Explodes</h3>
+        <div class="node-people">Google · OpenAI</div>
+        <p class="node-desc">Pre-train once on the internet, fine-tune for anything. BERT reads both ways, masters understanding. GPT reads left to right, masters generation.</p>
+        <div class="node-tags">
+          <span class="tag">BERT</span>
+          <span class="tag">GPT</span>
+          <span class="tag">Fine-tuning</span>
+          <span class="tag">T5</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="node left">
+      <div class="node-content left">
+        <h3 class="node-title">GPT-3 — Scaling Laws</h3>
+        <div class="node-people">OpenAI · DeepMind</div>
+        <p class="node-desc">175 billion parameters. Abilities emerged nobody designed — arithmetic, translation, code. Few-shot learning. Scale became a science.</p>
+        <div class="node-tags">
+          <span class="tag">Emergence</span>
+          <span class="tag">In-Context Learning</span>
+          <span class="tag">Chain-of-Thought</span>
+          <span class="tag">Chinchilla</span>
+        </div>
+      </div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">2020</div>
+      </div>
+      <div class="node-content right"></div>
+    </div>
+  </div>
+
+  <!-- Era 5: Generative Explosion -->
+  <div class="era era-5">
+    <div class="era-badge">Act Five</div>
+    <div class="era-marker">
+      <div class="era-label">Act Five</div>
+      <h2 class="era-title">The <em>Generative</em> Explosion</h2>
+      <div class="era-years">2021 — 2023</div>
+    </div>
+
+    <div class="node left">
+      <div class="node-content left">
+        <h3 class="node-title">Diffusion — Images From Noise</h3>
+        <div class="node-people">Ho et al. · Stability AI · OpenAI</div>
+        <p class="node-desc">DALL-E, Stable Diffusion, Midjourney. Learn to reverse noise step by step. Anyone could now generate art from a sentence.</p>
+        <div class="node-tags">
+          <span class="tag">Diffusion</span>
+          <span class="tag">CLIP</span>
+          <span class="tag">Latent Diffusion</span>
+        </div>
+      </div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">2022</div>
+      </div>
+      <div class="node-content right"></div>
+    </div>
+
+    <div class="node right">
+      <div class="node-content left"></div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">2022</div>
+      </div>
+      <div class="node-content right">
+        <h3 class="node-title">ChatGPT — AI Goes Mainstream</h3>
+        <div class="node-people">OpenAI</div>
+        <p class="node-desc">GPT-3 aligned through RLHF. 100 million users in two months. Same model, new training. The world changes overnight.</p>
+        <div class="node-tags">
+          <span class="tag">RLHF</span>
+          <span class="tag">Alignment</span>
+          <span class="tag">Reward Model</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="node left">
+      <div class="node-content left">
+        <h3 class="node-title">The Open-Source Race</h3>
+        <div class="node-people">Meta · Mistral · DeepSeek</div>
+        <p class="node-desc">LLaMA leaks. Llama 2 opens. Fine-tune and run powerful models on your laptop. Google's internal memo: "We have no moat."</p>
+        <div class="node-tags">
+          <span class="tag">LLaMA</span>
+          <span class="tag">Quantization</span>
+          <span class="tag">LoRA</span>
+          <span class="tag">Ollama</span>
+        </div>
+      </div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">2023</div>
+      </div>
+      <div class="node-content right"></div>
+    </div>
+  </div>
+
+  <!-- Era 6: Intelligence Race -->
+  <div class="era era-6">
+    <div class="era-badge">Act Six</div>
+    <div class="era-marker">
+      <div class="era-label">Act Six</div>
+      <h2 class="era-title">The <em>Intelligence</em> Race</h2>
+      <div class="era-years">2024 — Today</div>
+    </div>
+
+    <div class="node left">
+      <div class="node-content left">
+        <h3 class="node-title">Reasoning Models</h3>
+        <div class="node-people">OpenAI · DeepSeek · Anthropic</div>
+        <p class="node-desc">o1, R1 — models trained to reason internally before answering. Test-time compute: think longer, solve harder.</p>
+        <div class="node-tags">
+          <span class="tag">o1</span>
+          <span class="tag">CoT</span>
+          <span class="tag">Test-time Compute</span>
+        </div>
+      </div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">2024</div>
+      </div>
+      <div class="node-content right"></div>
+    </div>
+
+    <div class="node right">
+      <div class="node-content left"></div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">2024</div>
+      </div>
+      <div class="node-content right">
+        <h3 class="node-title">Agentic AI</h3>
+        <div class="node-people">The industry</div>
+        <p class="node-desc">Models that plan, reason, and act. Tool use. API calls. Autonomous task completion. The shift from chatbot to colleague.</p>
+        <div class="node-tags">
+          <span class="tag">Function Calling</span>
+          <span class="tag">ReAct</span>
+          <span class="tag">Multi-agent</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="node left">
+      <div class="node-content left">
+        <h3 class="node-title">Small Models, Big Impact</h3>
+        <div class="node-people">The distillation wave</div>
+        <p class="node-desc">Phi-4, Gemma, Llama 3.2. Tiny models matching giants through distillation. AI on phones, laptops, the edge.</p>
+        <div class="node-tags">
+          <span class="tag">Distillation</span>
+          <span class="tag">Edge AI</span>
+          <span class="tag">SLM</span>
+        </div>
+      </div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">2025</div>
+      </div>
+      <div class="node-content right"></div>
+    </div>
+
+    <div class="node right">
+      <div class="node-content left"></div>
+      <div class="node-spine">
+        <div class="node-dot"></div>
+        <div class="node-year">Now</div>
+      </div>
+      <div class="node-content right">
+        <h3 class="node-title">Multimodal Everything</h3>
+        <div class="node-people">OpenAI · Google · Anthropic</div>
+        <p class="node-desc">Text, image, audio, video — one model, all modalities. Sora generates film. Voice feels human. The boundary between senses dissolves.</p>
+        <div class="node-tags">
+          <span class="tag">GPT-4o</span>
+          <span class="tag">Gemini</span>
+          <span class="tag">Sora</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Outro -->
+  <div class="outro">
+    <p>"The story is about when things changed the world, not when they were written."</p>
+    <div class="signature">— End of journey · For now</div>
+  </div>
+
+</div>
+
+<script>
+  // Intersection observer for scroll-triggered reveals
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  });
+
+  document.querySelectorAll('.era').forEach(era => observer.observe(era));
+</script>
+
+</body>
+</html>
